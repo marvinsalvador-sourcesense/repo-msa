@@ -31,7 +31,7 @@ pipeline {
 	stages {
 	// The list of all stages
 	
-		stage("1 - git clone") {
+		stage('1 - git clone') {
 
 			steps {
 				echo '1: git clone'
@@ -56,7 +56,7 @@ pipeline {
 			}
 		}
 
-		stage("2 - Build") {
+		stage('2 - Build') {
 
                         steps {
 				echo '2: Build Image'
@@ -64,7 +64,7 @@ pipeline {
                         }
                 }
 
-		stage("3 - Test") {
+		stage('3 - Test') {
 
 			// execute steps when:
 			when {
@@ -88,7 +88,7 @@ pipeline {
                         }
                 }
 
-		stage("4 - Push") {
+		stage('4 - Push') {
 
                         steps {
 				echo '4: placeholder'
