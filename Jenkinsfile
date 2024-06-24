@@ -34,33 +34,37 @@ pipeline {
 		stage('1 - git clone') {
 
 			steps {
-				echo '1: git clone'
+				script {
+					echo '1: git clone'
 
-				// Use wrapper to extract credentials
-				// extract into variables: usernameVariable and passwordVariable
-				//
-				// withCredentials([<object syntax>])
-				// {<block of code>}
+					// Use wrapper to extract credentials
+					// extract into variables: usernameVariable and passwordVariable
+					//
+					// withCredentials([<object syntax>])
+					// {<block of code>}
 
-				/* Example:
-				withCredentials([
-					usernamePassword(credentials: '<jenkins credentials>', usernameVariable: USER, passwordVariable: PWD)
-				]) {
-					// Can use extracted vars inside this block
+					/* Example:
+					withCredentials([
+						usernamePassword(credentials: '<jenkins credentials>', usernameVariable: USER, passwordVariable: PWD)
+					]) {
+						// Can use extracted vars inside this block
 
-					// example:
-					// sh "<various shell commands> ${USER} ${PWD}}"
+						// example:
+						// sh "<various shell commands> ${USER} ${PWD}}"
 
-				} //withCredentials
-				*/
+					} //withCredentials
+					*/
+				}
 			}
 		}
 
 		stage('2 - Build') {
 
                         steps {
-				echo '2: Build Image'
-				//dockerImage = docker.build nginxImage
+                        	script {
+					echo '2: Build Image'
+					//dockerImage = docker.build nginxImage
+				}
                         }
                 }
 
@@ -83,15 +87,19 @@ pipeline {
                         } // when
 
                         steps {
-				echo '3: Test'
-				echo "Testing version: ${params.VERSION}"
+                        	script {
+					echo '3: Test'
+					echo "Testing version: ${params.VERSION}"
+				}
                         }
                 }
 
 		stage('4 - Push') {
 
                         steps {
-				echo '4: placeholder'
+                        	script {
+					echo '4: placeholder'
+				}
                         }
                 }
 	
