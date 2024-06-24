@@ -1,0 +1,19 @@
+#Define base image
+FROM alpine:latest
+
+#Install nginx
+#RUN /usr/bin/dnf-3 -y update && /usr/bin/dnf-3 -y install nginx
+RUN apk update && apk add nginx
+
+#Copy config
+COPY default.conf /etc/nginx/http.d/
+#COPY default.conf /etc/nginx/conf.d/
+
+#Copy index
+COPY index.html /usr/share/nginx/html/index.html
+
+#Expose port
+EXPOSE 80/tcp
+
+#Run nginx
+CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
