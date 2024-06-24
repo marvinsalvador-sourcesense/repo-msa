@@ -2,6 +2,7 @@ pipeline {
 
 	agent any
 
+	/*
 	environment {
 	// define environmental variables
 	// to be used in the next lines
@@ -10,6 +11,7 @@ pipeline {
 		//SERVER_CREDENTIALS = credentials('<credentials>')
 
 	}
+	*/
 
 	parameters {
 	// define parameters
