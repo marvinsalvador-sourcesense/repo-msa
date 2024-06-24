@@ -60,7 +60,7 @@ pipeline {
 
                         steps {
 				echo '2: Build Image'
-				dockerImage = docker.build nginxImage
+				//dockerImage = docker.build nginxImage
                         }
                 }
 
