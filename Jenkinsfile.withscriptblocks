@@ -63,7 +63,7 @@ pipeline {
                         steps {
                         	script {
 					echo '2: Build Image'
-					//def dockerImage = docker.build "nginxImage:${VERSION}"
+					def dockerImage = docker.build "nginxImage:${VERSION}"
 				}
                         }
                 }
