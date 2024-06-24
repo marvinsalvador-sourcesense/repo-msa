@@ -35,7 +35,7 @@ pipeline {
 
 			steps {
 				script {
-					echo '1: git clone'
+					echo '1: Git Clone (Done from pipeline already)'
 
 					// Use wrapper to extract credentials
 					// extract into variables: usernameVariable and passwordVariable
@@ -63,7 +63,7 @@ pipeline {
                         steps {
                         	script {
 					echo '2: Build Image'
-					//dockerImage = docker.build nginxImage
+					dockerImage = docker.build nginxImage
 				}
                         }
                 }
@@ -90,6 +90,7 @@ pipeline {
                         	script {
 					echo '3: Test'
 					echo "Testing version: ${params.VERSION}"
+					echo "Not testing anything in reality"
 				}
                         }
                 }
@@ -98,7 +99,7 @@ pipeline {
 
                         steps {
                         	script {
-					echo '4: placeholder'
+					echo '4: Push placeholder'
 				}
                         }
                 }
