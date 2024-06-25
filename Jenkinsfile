@@ -9,10 +9,10 @@ pipeline {
 
 		//Bind credentials into an environmental variable
 		//SERVER_CREDENTIALS = credentials('<credentials>')
-
 	}
 	*/
-
+	
+	/*
 	parameters {
 	// define parameters
 
@@ -27,6 +27,7 @@ pipeline {
 		booleanParam(name: 'executeTests', defaultValue: true, description: 'boolean used to define if to execute tests')
 
 	}
+	*/
 	
 	stages {
 	// The list of all stages
@@ -34,8 +35,10 @@ pipeline {
 		stage('1 - git clone') {
 
 			steps {
-				script {
+				
 					echo '1: Git Clone (Done from pipeline already)'
+					
+					git branch: 'main', credentialsId: 'credentials-github-msa', url: 'https://github.com/marvinsalvador-sourcesense/repo-msa.git'
 
 					// Use wrapper to extract credentials
 					// extract into variables: usernameVariable and passwordVariable
@@ -54,17 +57,17 @@ pipeline {
 
 					} //withCredentials
 					*/
-				}
+				
 			}
 		}
 
 		stage('2 - Build') {
 
                         steps {
-                        	script {
+                        	
 					echo '2: Build Image'
-					//def dockerImage = docker.build "nginxImage:${VERSION}"
-				}
+					def dockerImage = docker.build 'nginxImage'
+				
                         }
                 }
 
@@ -87,20 +90,20 @@ pipeline {
                         } // when
 
                         steps {
-                        	script {
+                        	
 					echo '3: Test'
 					echo "Testing version: ${params.VERSION}"
 					echo "Not testing anything in reality"
-				}
+				
                         }
                 }
 
 		stage('4 - Push') {
 
                         steps {
-                        	script {
+                        	
 					echo '4: Push placeholder'
-				}
+				
                         }
                 }
 	
