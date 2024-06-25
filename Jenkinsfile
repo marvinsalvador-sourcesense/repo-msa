@@ -128,6 +128,7 @@ pipeline {
 		failure {
 		// in case of failure
 			echo 'Post operations after failure'
+			echo 'HAI FALLITO'
 		}
 	}
 }
