@@ -12,7 +12,7 @@ pipeline {
 	}
 	*/
 	
-	/*
+	
 	parameters {
 	// define parameters
 
@@ -21,13 +21,13 @@ pipeline {
 		// string(name: 'VERSION', defaultValue: '', description: 'Version to deploy')
 		//
 		// - choice(name, choices, description)
-		choice(name: 'VERSION', choices: ['1.0.0', '1.0.1', '1.0.1a'], description: 'choice: version to deploy')
+		//choice(name: 'VERSION', choices: ['1.0.0', '1.0.1', '1.0.1a'], description: 'choice: version to deploy')
 		//
 		// - booleanParam(name, defaultValue, description)
 		booleanParam(name: 'executeTests', defaultValue: true, description: 'boolean used to define if to execute tests')
 
 	}
-	*/
+	
 	
 	stages {
 	// The list of all stages
@@ -35,7 +35,7 @@ pipeline {
 		stage('1 - git clone') {
 
 			steps {
-				
+				script {
 					echo '1: Git Clone (Done from pipeline already)'
 					
 					git branch: 'main', credentialsId: 'credentials-github-msa', url: 'https://github.com/marvinsalvador-sourcesense/repo-msa.git'
@@ -57,17 +57,17 @@ pipeline {
 
 					} //withCredentials
 					*/
-				
+				}
 			}
 		}
 
 		stage('2 - Build') {
 
                         steps {
-                        	
+                        	script {
 					echo '2: Build Image'
-					def dockerImage = docker.build 'nginxImage'
-				
+					//def dockerImage = docker.build 'nginxImage'
+				}
                         }
                 }
 
@@ -90,20 +90,20 @@ pipeline {
                         } // when
 
                         steps {
-                        	
+                        	script {
 					echo '3: Test'
 					echo "Testing version: ${params.VERSION}"
 					echo "Not testing anything in reality"
-				
+				}
                         }
                 }
 
 		stage('4 - Push') {
 
                         steps {
-                        	
+                        	script {
 					echo '4: Push placeholder'
-				
+				}
                         }
                 }
 	
@@ -121,6 +121,7 @@ pipeline {
 		success {
 		// in case of success
 			echo 'Post operations after success'
+			echo 'E\'STATO UN SUCCESSO DAIE'
 
 		}
 
